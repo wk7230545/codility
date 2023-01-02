@@ -18,3 +18,29 @@ Write an efficient algorithm for the following assumptions:
 
 N is an integer within the range [1..2,147,483,647].
 '''
+'''
+Solution Algorithm
+10001001000001
+- read the sequence
+- increment a counter variable for each zero digit
+- reset counter every time when '1' is reached
+- compare zero counter with the current maximum value
+'''
+
+N = int(input('Please input a number: '))
+binrep = bin(N)[2:]
+
+def solution(N): 
+    counter = 0
+    maxcounter = 0
+    for k in binrep:
+        if int(k) == 0:
+            counter += 1
+        elif int(k) == 1:
+            maxcounter = max(counter, maxcounter)
+            counter = 0
+    return maxcounter
+
+
+print(f'The binary representation of {N} is {binrep}')
+print(f'The binary gap is {solution(N)}')
